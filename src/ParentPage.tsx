@@ -701,6 +701,91 @@ function PasswordSettings({ currentPassword, onChangePassword, onToast }: {
       <button className="btn-primary" onClick={handleChange} style={{ background: 'var(--orange)' }}>
         保存新密码
       </button>
+
+      {/* 数据备份与恢复 */}
+      <div style={{ borderTop: '1px solid #e0e0e0', marginTop: 24, paddingTop: 20 }}>
+        <div style={{ textAlign: 'center', marginBottom: 16 }}>
+          <div style={{ fontSize: 32, marginBottom: 4 }}>💾</div>
+          <div style={{ fontSize: 16, fontWeight: 700 }}>数据备份与恢复</div>
+          <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4, lineHeight: 1.5 }}>
+            导出数据保存到剪贴板，换手机或换链接时可粘贴恢复
+          </div>
+        </div>
+        <DataBackupRestore onToast={onToast} />
+      </div>
+    </div>
+  )
+}
+
+function DataBackupRestore({ onToast }: { onToast: (text: string, type?: 'success' | 'error' | 'info') => void }) {
+  const [importText, setImportText] = useState('')
+
+  function handleExport() {
+    try {
+      const raw = localStorage.getItem('pvz-study-state') || '{}'
+      const data = btoa(unescape(encodeURIComponent(raw)))
+      const text = `PVZ_BACKUP:${data}`
+      // 尝试复制到剪贴板
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          onToast('数据已复制到剪贴板！请粘贴到备忘录保存', 'success')
+        }).catch(() => {
+          setImportText(text)
+          onToast('已显示在下方输入框，请长按复制保存', 'info')
+        })
+      } else {
+        setImportText(text)
+        onToast('已显示在下方输入框，请长按复制保存', 'info')
+      }
+    } catch (e) {
+      onToast('导出失败', 'error')
+    }
+  }
+
+  function handleImport() {
+    if (!importText.trim()) {
+      onToast('请粘贴备份数据', 'error')
+      return
+    }
+    try {
+      const text = importText.trim()
+      if (!text.startsWith('PVZ_BACKUP:')) {
+        onToast('数据格式不正确', 'error')
+        return
+      }
+      const data = text.replace('PVZ_BACKUP:', '')
+      const raw = decodeURIComponent(escape(atob(data)))
+      const parsed = JSON.parse(raw)
+      if (!parsed.children || !parsed.tasks) {
+        onToast('数据内容不完整', 'error')
+        return
+      }
+      localStorage.setItem('pvz-study-state', raw)
+      onToast('恢复成功！页面即将刷新', 'success')
+      setTimeout(() => window.location.reload(), 1500)
+    } catch (e) {
+      onToast('数据解析失败，请检查内容', 'error')
+    }
+  }
+
+  return (
+    <div>
+      <button className="btn-primary" style={{ background: 'var(--green)', marginBottom: 10, width: '100%' }} onClick={handleExport}>
+        📤 导出数据（复制到剪贴板）
+      </button>
+      <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginBottom: 8, lineHeight: 1.5 }}>
+        恢复数据：将之前导出的备份文本粘贴到下方输入框，点击恢复
+      </div>
+      <textarea
+        className="form-input"
+        style={{ width: '100%', minHeight: 80, fontSize: 11, marginBottom: 10, resize: 'vertical', fontFamily: 'monospace' }}
+        placeholder="在此粘贴备份数据..."
+        value={importText}
+        onChange={e => setImportText(e.target.value)}
+      />
+      <button className="btn-primary" style={{ background: 'var(--blue)', width: '100%' }} onClick={handleImport}>
+        📥 恢复数据
+      </button>
     </div>
   )
 }

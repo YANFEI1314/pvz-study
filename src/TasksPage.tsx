@@ -161,7 +161,12 @@ export function TasksPage({
   function handleTaskClick(t: Task) {
     if (t.status === 'approved') return
     if (isOverdue(t)) { onToast('任务已逾期', 'error'); return }
-    // 点击任务行直接弹出拍照/提交弹窗
+    // 不需要拍照提交的任务，直接提交
+    if (!t.requireUpload) {
+      handleSubmit(t)
+      return
+    }
+    // 需要拍照提交的任务，弹出拍照弹窗
     setUploadTask(t)
   }
 
