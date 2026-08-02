@@ -46,7 +46,7 @@ function createDefaultTasks(childId: string): Task[] {
     base({ title: '朗读语文课文', subject: 'chinese', group: 'study', reward: 25, deadline: '23:45', requireUpload: true, icon: 'reading' }),
     base({ title: '背诵英语单词', subject: 'english', group: 'study', reward: 20, deadline: '23:59', requireUpload: false, icon: 'english' }),
     base({ title: '整理书包书桌', subject: 'habit', group: 'life', reward: 10, deadline: '23:00', requireUpload: false, icon: 'broom' }),
-    base({ title: '跳绳100下', subject: 'sport', group: 'sport', reward: 12, deadline: '22:30', requireUpload: false, icon: 'ball' }),
+    base({ title: '跳绳100下', subject: 'other', group: 'other', reward: 15, deadline: '22:30', requireUpload: false, icon: 'ball' }),
   ]
 }
 

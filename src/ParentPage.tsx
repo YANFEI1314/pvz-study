@@ -824,7 +824,8 @@ function TaskEditModal({ task, onClose, onSave }: {
     if (s === 'math') setReward(30)
     else if (s === 'chinese') setReward(25)
     else if (s === 'english') setReward(20)
-    else setReward(Math.floor(Math.random() * 8) + 8)
+    else if (s === 'habit') setReward(10)
+    else setReward(15)
   }
 
   return (
@@ -839,11 +840,11 @@ function TaskEditModal({ task, onClose, onSave }: {
           <div className="form-group">
             <label className="form-label">科目分类</label>
             <select className="form-select" value={subject} onChange={e => onSubjectChange(e.target.value as Subject)}>
-              <option value="math">数学（30阳光）</option>
-              <option value="chinese">语文（25阳光）</option>
-              <option value="english">英语（20阳光）</option>
-              <option value="sport">运动（8-15阳光）</option>
-              <option value="habit">习惯（8-15阳光）</option>
+              <option value="math">数学</option>
+              <option value="chinese">语文</option>
+              <option value="english">英语</option>
+              <option value="habit">习惯</option>
+              <option value="other">其他</option>
             </select>
           </div>
           <div className="form-group">

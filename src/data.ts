@@ -48,8 +48,8 @@ export const SUBJECT_CONFIG: Record<Subject, { label: string; icon: string; rewa
   math:    { label: '数学', icon: 'math_icon', reward: 30, unlockCategory: '学习任务' },
   chinese: { label: '语文', icon: 'reading', reward: 25, unlockCategory: '学习任务' },
   english: { label: '英语', icon: 'english', reward: 20, unlockCategory: '学习任务' },
-  sport:   { label: '运动家务', icon: 'ball', reward: 12, unlockCategory: '运动家务' },
-  habit:   { label: '生活习惯', icon: 'broom', reward: 10, unlockCategory: '生活习惯' },
+  habit:   { label: '习惯', icon: 'broom', reward: 10, unlockCategory: '生活习惯' },
+  other:   { label: '其他', icon: 'star', reward: 10, unlockCategory: '其他任务' },
 }
 
 // 科目到任务分组映射
@@ -57,14 +57,14 @@ export const SUBJECT_GROUP: Record<Subject, TaskGroup> = {
   math: 'study',
   chinese: 'study',
   english: 'study',
-  sport: 'sport',
   habit: 'life',
+  other: 'other',
 }
 
 export const GROUP_CONFIG: Record<TaskGroup, { label: string; icon: string; desc: string }> = {
   study: { label: '好好学习', icon: 'book', desc: '语数英学习任务' },
   life:  { label: '生活好习惯', icon: 'broom', desc: '日常好习惯养成' },
-  sport: { label: '我爱运动', icon: 'ball', desc: '运动与家务' },
+  other: { label: '其他任务', icon: 'star', desc: '其他类型任务' },
 }
 
 // 任务可选图标列表（供家长端编辑任务时选择）

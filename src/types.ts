@@ -1,7 +1,7 @@
 // ====== 类型定义 ======
 
-export type Subject = 'math' | 'chinese' | 'english' | 'sport' | 'habit'
-export type TaskGroup = 'study' | 'life' | 'sport'
+export type Subject = 'math' | 'chinese' | 'english' | 'habit' | 'other'
+export type TaskGroup = 'study' | 'life' | 'other'
 
 /** 四大分类（任务栏展示用） */
 export type TaskCategory = 'math' | 'chinese' | 'english' | 'other'
