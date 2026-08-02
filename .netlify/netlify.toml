@@ -7,8 +7,10 @@ redirects = []
 [functions."*"]
 
 [build]
-publish = "/workspace/pvz-study"
-publishOrigin = "default"
+publish = "/workspace/pvz-study/dist"
+publishOrigin = "ui"
+commandOrigin = "ui"
+command = "npm run build"
 
 [build.environment]
 
