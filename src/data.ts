@@ -69,18 +69,37 @@ export const GROUP_CONFIG: Record<TaskGroup, { label: string; icon: string; desc
 
 // 任务可选图标列表（供家长端编辑任务时选择）
 export const TASK_ICONS: Array<{ key: string; label: string }> = [
+  // 学习类
   { key: 'reading', label: '诵读' },
   { key: 'pencil', label: '作业' },
   { key: 'math_icon', label: '数学' },
   { key: 'english', label: '英语' },
   { key: 'writing', label: '写字' },
+  { key: 'book', label: '阅读' },
+  // 才艺类
   { key: 'music', label: '乐器' },
   { key: 'art', label: '绘画' },
   { key: 'computer', label: '编程' },
-  { key: 'book', label: '阅读' },
+  // 运动家务
   { key: 'ball', label: '运动' },
   { key: 'broom', label: '家务' },
+  // 生活习惯
   { key: 'star', label: '习惯' },
+  { key: 'heart', label: '爱心' },
+  { key: 'clock', label: '按时' },
+  // 新增图标
+  { key: 'sun', label: '早起' },
+  { key: 'house', label: '整理' },
+  { key: 'gift', label: '奖励' },
+  { key: 'trophy', label: '挑战' },
+  { key: 'chart', label: '进步' },
+  { key: 'leaf', label: '自然' },
+  { key: 'camera', label: '拍照' },
+  { key: 'check', label: '完成' },
+  { key: 'list', label: '清单' },
+  { key: 'parent', label: '亲子' },
+  { key: 'fire', label: '坚持' },
+  { key: 'diamond', label: '目标' },
 ]
 
 // 根据累计阳光值返回已解锁的植物列表（使用传入的植物数组）
